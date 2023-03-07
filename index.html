@@ -8,16 +8,23 @@
 </head>
 <body>
     <div id="app">
-        <h1>{{age > 60 ? 'Velho' : 'Novo'}}</h1>
-        <h1>{{name.split(' ')[0]}}</h1>
+        <h1>{{getFullName(firstName, lastName).name}}</h1>
     </div>
     <script src="vue.js"></script>
     <script>
         new Vue({
             el: '#app',
             data: {
-                age: 38,
-                name: 'Davi Bernardo'
+                firstName: 'Davi',
+                lastName: 'Bernardo'
+            },
+            methods: {
+                getFullName: function(first, last){
+                    // return first + ' ' + last;
+                    return {
+                        name: first + ' ' + last
+                    }
+                }
             }
         });
     </script>
