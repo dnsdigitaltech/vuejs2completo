@@ -8,23 +8,15 @@
 </head>
 <body>
     <div id="app">
-        <p>Título: {{ movieTitle }}</p>
-        <p>Liberado: {{ releaseYear }} </p>
-        <p>O filme é: {{ isMovieOld(releaseYear) }}</p>
-        <div v-bind:title="movieTitle">Passer o mouse aqui</div>
+        <div v-bind:title="firstName + ' ' + lastName">Passer o mouse aqui</div>
     </div>
     <script src="vue.js"></script>
     <script>
         new Vue({
             el: '#app',
             data: {
-                movieTitle: 'The Matrix',
-                releaseYear: 1999
-            },
-            methods: {
-                isMovieOld: function(releaseYear) {
-                    return releaseYear < 2000 ? 'velho' : 'novo';
-                }
+                firstName: 'Davi',
+                lastName: 'Bernardo'
             }
         });
     </script>
