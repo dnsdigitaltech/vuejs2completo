@@ -8,23 +8,14 @@
 </head>
 <body>
     <div id="app">
-        <h1>{{getFullName(firstName, lastName).name}}</h1>
+        <a v-bind:href="blogUrl">Visite meu blog</a>
     </div>
     <script src="vue.js"></script>
     <script>
         new Vue({
             el: '#app',
             data: {
-                firstName: 'Davi',
-                lastName: 'Bernardo'
-            },
-            methods: {
-                getFullName: function(first, last){
-                    // return first + ' ' + last;
-                    return {
-                        name: first + ' ' + last
-                    }
-                }
+                blogUrl: 'https://google.com'
             }
         });
     </script>
