@@ -8,14 +8,23 @@
 </head>
 <body>
     <div id="app">
-        <a v-bind:href="blogUrl">Visite meu blog</a>
+        <p>Título: {{ movieTitle }}</p>
+        <p>Liberado: {{ releaseYear }} </p>
+        <p>O filme é: {{ isMovieOld(releaseYear) }}</p>
+        <div v-bind:title="movieTitle">Passer o mouse aqui</div>
     </div>
     <script src="vue.js"></script>
     <script>
         new Vue({
             el: '#app',
             data: {
-                blogUrl: 'https://google.com'
+                movieTitle: 'The Matrix',
+                releaseYear: 1999
+            },
+            methods: {
+                isMovieOld: function(releaseYear) {
+                    return releaseYear < 2000 ? 'velho' : 'novo';
+                }
             }
         });
     </script>
