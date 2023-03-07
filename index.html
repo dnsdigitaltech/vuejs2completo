@@ -8,17 +8,18 @@
 </head>
 <body>
     <div id="app">
-        <button v-on:click="clickedButton('Hello World',$event)">Clique aqui!</button>
+        <button v-on:click.stop="clickedButton('Hello World',$event)">Clique aqui!</button>
+        <button v-on:click.once="clickedButton('Hello World',$event)">Clique aqui!</button>
+        <a href="https://google.com" v-on:click.prevent="showDialog" target="_blank">Ou aqui!</a>
     </div>
     <script src="vue.js"></script>
     <script>
         new Vue({
             el: '#app',
             methods: {
-                clickedButton: function(message, event){
-                    console.log(event);
-                    alert(message);
-                }
+                showDialog:{function() {
+                    alert('Hello World!')
+                }}
             }
         });
     </script>
