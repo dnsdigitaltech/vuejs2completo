@@ -8,41 +8,20 @@
 </head>
 <body>
     <div id="app">
-        <h1>Filmes</h1>
         <ul>
-            <li v-for="title in movieTitles">{{title}}</li>
-        </ul>
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>Nome</th>
-                    <th>Título</th>
-                    <th>Empresa</th>
-                    <th>index</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="(employee, index) in employees">
-                    <td>{{employee.name}}</td>
-                    <td>{{employee.title}}</td>
-                    <td>{{companyName}}</td>
-                    <td>{{index}}</td>
-                </tr>
-            </tbody>
-        </table>
+            <li v-for="(value, propertyName, index) in person">{{propertyName}} : {{value}} ({{index}})</li>
+        </ul>        
     </div>
     <script src="vue.js"></script>
     <script>
         new Vue({
             el: '#app',
             data: {
-                movieTitles: ['The Matrix', 'The Matrix: Reloaded', 'The Matrix Revolutions'],
-                employees: [
-                    {name: 'Carlos', title: 'Contador'},
-                    {name: 'Silvia', title: 'Gerente de marketing'},
-                    {name: 'Danilo', title: 'Desenvolvedor'}
-                ],
-                companyName: 'VueX Ltd.'
+                person: {
+                    firstName: 'Davi',
+                    lastName: 'Bernardo',
+                    age: 38
+                }
             }
             
         });        
