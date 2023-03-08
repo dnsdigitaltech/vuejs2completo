@@ -9,49 +9,22 @@
 <body>
     <div id="app">
         <ul>
-            <li v-for="p in persons" v-bind:key="p.id">{{ p.name }} (ID: {{ p.id }}) <input type="text"></li>
-          </ul>
-          
-          <button v-on:click="addNewPerson()">Add pessoa</button>
-          <button v-on:click="shuffle()">Embaralhar</button>       
+          <li v-for="n in numbers">{{ n }}</li>
+        </ul>
+        
+        <button v-on:click="changeNumber()">Change Number</button>
     </div>
     <script src="vue.js"></script>
     <script>
         new Vue({
             el: '#app',
         data: {
-            persons: [
-                { id: 1, name: 'Carlos' },
-                { id: 2, name: 'Carla' },
-                { id: 3, name: 'Teresa' }
-            ]
+                numbers: [1, 2, 3, 4, 5]
         },
         methods: {
-            addNewPerson: function() {
-                var highestId = Math.max.apply(Math, this.persons.map(function(p) { 
-                return p.id;
-            }));
-            var names = ['Carlos', 'Michael', 'Estevão', 'Diane', 'Peter'];
-            
-            this.persons.push({
-                id: highestId + 1,
-                name: names[Math.floor(Math.random() * names.length)]
-            });
-            },
-            shuffle: function() {
-                this.persons = this.shuffleArray(this.persons);
-            },
-            shuffleArray: function (arr) {
-                var newArr = arr.slice();
-            
-            for (var i = newArr.length - 1; i > 0; i--) {
-                var j = Math.floor(Math.random() * (i + 1));
-                var temp = newArr[i];
-                newArr[i] = newArr[j];
-                newArr[j] = temp;
-            }
-            
-                return newArr;
+            changeNumber: function() {
+                Vue.set(this.numbers, 1, 10);
+                alert(this.numbers[1]);
             }
         }
         });       
