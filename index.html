@@ -8,25 +8,39 @@
 </head>
 <body>
     <div id="app">
-        <ul>
-          <li v-for="n in numbers">{{ n }}</li>
-        </ul>
+         <!-- EXERCÍCIO 1: Use ligação de dados bidirecional para atualizar o valor de uma "senha"
+        propriedade de dados -->
+        <input type="password" placeholder="Nome" v-model="password">
         
-        <button v-on:click="changeNumber()">Change Number</button>
+        <!-- EXERCÍCIO 2: Mostre o parágrafo correto dependendo do tamanho do
+        a senha digitada. -->
+        <p v-if="password.length > 8">Incrível! Sua senha tem mais de 8 caracteres.</p>
+        <p v-else-if="password.length > 0">Insira uma senha mais longa</p>
+        <p v-else>Por favor insira uma senha.</p>
+        
+        <!-- EXERCÍCIO 3: Exiba as categorias como uma lista ordenada com cada
+        subcategorias da categoria como uma lista não ordenada aninhada. -->
+        <ol>
+            <li v-for="category in categories">
+                {{category.name}}
+                <ul>
+                    <li v-for="sub in category.sub">{{sub}}</li>
+                </ul>
+            </li>
+        </ol>
     </div>
     <script src="vue.js"></script>
     <script>
         new Vue({
-            el: '#app',
-        data: {
-                numbers: [1, 2, 3, 4, 5]
-        },
-        methods: {
-            changeNumber: function() {
-                Vue.set(this.numbers, 1, 10);
-                alert(this.numbers[1]);
+            el:'#app',
+            data: {
+                password: '',
+                categories: [
+                    { name: 'JavaScript', sub: ['Vue.js', 'React', 'Angular2'] },
+                    { name: 'Databases', sub: ['MySQL', 'PostgreSQL', 'MariaDB'] },
+                    { name: 'Operating Systems', sub: ['macOS', 'Linux', 'Windows'] }
+                ]
             }
-        }
         });       
     </script>
 </body>
