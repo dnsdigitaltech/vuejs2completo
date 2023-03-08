@@ -5,24 +5,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Title</title>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <div id="app">
-        <p v-show="isNinja">Invisível como um ninja!</p>
-        <p v-show="!isNinja">Aqui estou!</p>
-
-        <button v-on:click="isNinja = !isNinja ">Alternar Habilidades Ninja</button>
-        
+        <h1>Exemplo v-cloak</h1>
+        <p v-cloak>{{message}}</p>
     </div>
     <script src="vue.js"></script>
     <script>
-        new Vue({
-            el: '#app',
-            data: {
-                isNinja: true
-            }
-            
-        });
+        setTimeout(function(){
+            new Vue({
+                el: '#app',
+                data: {
+                    message: 'Hello Word!'
+                }
+                
+            });
+        }, 5000);        
     </script>
 </body>
 </html>
