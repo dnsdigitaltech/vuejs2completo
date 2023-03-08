@@ -8,14 +8,10 @@
 </head>
 <body>
     <div id="app">
-        <p v-if="itemsInStook > 10">{{itemsInStook}} em estoque.</p>
-        <p v-else-if="itemsInStook > 0">Corra, restam poucos itens!</p>
-        <p v-else>Que pena, estamos todos fora!</p>
+        <p v-show="isNinja">Invisível como um ninja!</p>
+        <p v-show="!isNinja">Aqui estou!</p>
 
-        <template v-if="itemsInStook > 50">
-            <p>Ofertas especiais!</p>
-            <p>Parece que temos muitos de produtos em estoque... economize 20% se encomendar agora!</p>
-        </template>
+        <button v-on:click="isNinja = !isNinja ">Alternar Habilidades Ninja</button>
         
     </div>
     <script src="vue.js"></script>
@@ -23,7 +19,7 @@
         new Vue({
             el: '#app',
             data: {
-                itemsInStook: 60
+                isNinja: true
             }
             
         });
