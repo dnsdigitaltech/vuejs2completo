@@ -8,31 +8,48 @@
 </head>
 <body>
     <div id="app">
-        <input type="text" v-model="searchQuery">
-        <p v-if="isSearching">Buscando...</p>
-        <div v-else>
-            <ol>
-                <li v-for="result in results">{{result}}</li>
-            </ol>
-        </div>
+        <!-- EXERCÍCIO 1: Adicione uma propriedade computada que retorna um array de strings
+        com o nome do filme seguido do ano de lançamento entre parênteses.
+        Em seguida, imprima essas strings como uma lista ordenada. -->
+        <ol>
+            <li v-for="movie in formattedMovies">{{ movie }}</li>
+        </ol>
+        
+        <!-- EXERCÍCIO 2: Faça com que o botão abaixo adicione um filme de sua preferência a
+        propriedade de dados "movies". Em seguida, adicione um observador que gera o filme que
+        acabou de ser adicionado em uma caixa de diálogo de alerta. -->
+        <button v-on:click="addMovie">Add Filme</button>
     </div>
     <script src="vue.js"></script>
     <script>
         new Vue({
             el:'#app',
             data:{
-                searchQuery: '',
-                results: [],
-                isSearching: false
+                movies: [
+                    { name: 'The Matrix', year: 1999 },
+                    { name: 'The Matrix Reloaded', year: 2003 },
+                    { name: 'The Matrix Revolutions', year: 2003 }
+                ]
+            },
+            methods: {
+                addMovie: function() {
+                    this.movies.push({
+                        name: 'The Fast and the Furious',
+                        year: 2001
+                    });
+                }
+            },
+            computed: {
+                formattedMovies: function(){
+                    return this.movies.map(function(movie){
+                            return movie.name + ' (' + movie.year + ')';
+                        });
+                }
             },
             watch: {
-                searchQuery: function(query) {
-                    this.isSearching = true;
-                    var vm = this;
-                    setTimeout(function() {
-                        vm.results = ['JavaScrip', 'PHP', 'MySQL'];
-                        vm.isSearching = false;
-                    }, 5000);
+                movies: function(movies){
+                    var newMovie = movies[movies.length - 1];
+                    alert(newMovie.name + ' de ' + newMovie.year + ' foi adicionado!');
                 }
             }
         });       
