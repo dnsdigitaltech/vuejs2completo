@@ -8,45 +8,32 @@
 </head>
 <body>
     <div id="app">
-        <p>{{counter}}</p>
-        <p>{{fullName}}</p>
-        <p>{{fullName}}</p>
-        <button v-on:click="counter++">Aumentar contador</button>
-        <button v-on:click="changeName">Mude o nome</button>
-        <button v-on:click="changeNameSetter">Mude o nome (setter)</button>
+        <input type="text" v-model="searchQuery">
+        <p v-if="isSearching">Buscando...</p>
+        <div v-else>
+            <ol>
+                <li v-for="result in results">{{result}}</li>
+            </ol>
+        </div>
     </div>
     <script src="vue.js"></script>
     <script>
         new Vue({
             el:'#app',
-            data: {
-                counter: 1,
-                firstName: 'Davi',
-                lastName: 'Bernardo'
+            data:{
+                searchQuery: '',
+                results: [],
+                isSearching: false
             },
-            methods: {
-                changeName: function(){
-                    this.firstName = 'Marcos';
-                    this.lastName = 'Silva';
-                },
-                changeNameSetter: function() {
-                    this.fullName = 'Carlos Santos'
+            watch: {
+                searchQuery: function(query) {
+                    this.isSearching = true;
+                    var vm = this;
+                    setTimeout(function() {
+                        vm.results = ['JavaScrip', 'PHP', 'MySQL'];
+                        vm.isSearching = false;
+                    }, 5000);
                 }
-            },
-            computed: {
-                fullName:{
-                    get: function(){
-                        alert("Montando nome completo...")
-                        return this.firstName + ' ' + this.lastName;
-                    },
-                    set: function(newValue){
-                        alert("Definindo novo nome:" + newValue);
-                        var parts = newValue.split(' ');
-                        this.firstName = parts[0];
-                        this.lastName = parts[parts.length - 1];
-                    }
-                }
-                
             }
         });       
     </script>
