@@ -8,14 +8,15 @@
 </head>
 <body>
     <div id="app">
-        <div v-html="html"></div>
+        <h1 v-once>{{movieTitle}}</h1>
+        <button v-on:click="movieTitle = 'The Matrix Reloaded'">Mudar título do filme</button>
     </div>
     <script src="vue.js"></script>
     <script>
         new Vue({
             el: '#app',
             data: {
-                html:'<h1>Hello Word!</h1>'
+                movieTitle: 'The Matrix'
             }
             
         });
