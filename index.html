@@ -8,18 +8,21 @@
 </head>
 <body>
     <div id="app">
-        <button v-on:click.stop="clickedButton('Hello World',$event)">Clique aqui!</button>
-        <button v-on:click.once="clickedButton('Hello World',$event)">Clique aqui!</button>
-        <a href="https://google.com" v-on:click.prevent="showDialog" target="_blank">Ou aqui!</a>
+        <input type="text" v-on:keyup.enter="pressedEnter">
+        <input type="text" v-on:keyup.enter.space="pressedSomethingInteresting">
+        <input type="text" v-on:keyup.13="pressedEnter">
     </div>
     <script src="vue.js"></script>
     <script>
         new Vue({
             el: '#app',
             methods: {
-                showDialog:{function() {
-                    alert('Hello World!')
-                }}
+                pressedEnter: function(){
+                    alert("Você pressionu a tecla enter!");
+                },
+                pressedSomethingInteresting:function(){
+                    alert("Você pressionu a tecla enter ou espaço!");
+                },
             }
         });
     </script>
