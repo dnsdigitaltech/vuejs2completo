@@ -8,15 +8,22 @@
 </head>
 <body>
     <div id="app">
-        <h1 v-once>{{movieTitle}}</h1>
-        <button v-on:click="movieTitle = 'The Matrix Reloaded'">Mudar título do filme</button>
+        <p v-if="itemsInStook > 10">{{itemsInStook}} em estoque.</p>
+        <p v-else-if="itemsInStook > 0">Corra, restam poucos itens!</p>
+        <p v-else>Que pena, estamos todos fora!</p>
+
+        <template v-if="itemsInStook > 50">
+            <p>Ofertas especiais!</p>
+            <p>Parece que temos muitos de produtos em estoque... economize 20% se encomendar agora!</p>
+        </template>
+        
     </div>
     <script src="vue.js"></script>
     <script>
         new Vue({
             el: '#app',
             data: {
-                movieTitle: 'The Matrix'
+                itemsInStook: 60
             }
             
         });
