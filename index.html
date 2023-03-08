@@ -8,48 +8,26 @@
 </head>
 <body>
     <div id="app">
-        <!-- EXERCÍCIO 1: Adicione uma propriedade computada que retorna um array de strings
-        com o nome do filme seguido do ano de lançamento entre parênteses.
-        Em seguida, imprima essas strings como uma lista ordenada. -->
-        <ol>
-            <li v-for="movie in formattedMovies">{{ movie }}</li>
-        </ol>
-        
-        <!-- EXERCÍCIO 2: Faça com que o botão abaixo adicione um filme de sua preferência a
-        propriedade de dados "movies". Em seguida, adicione um observador que gera o filme que
-        acabou de ser adicionado em uma caixa de diálogo de alerta. -->
-        <button v-on:click="addMovie">Add Filme</button>
+        <h1>{{ message | uppercase(true)}}</h1>
     </div>
     <script src="vue.js"></script>
     <script>
         new Vue({
             el:'#app',
             data:{
-                movies: [
-                    { name: 'The Matrix', year: 1999 },
-                    { name: 'The Matrix Reloaded', year: 2003 },
-                    { name: 'The Matrix Revolutions', year: 2003 }
-                ]
+                message: 'hello world!'
             },
-            methods: {
-                addMovie: function() {
-                    this.movies.push({
-                        name: 'The Fast and the Furious',
-                        year: 2001
-                    });
-                }
-            },
-            computed: {
-                formattedMovies: function(){
-                    return this.movies.map(function(movie){
-                            return movie.name + ' (' + movie.year + ')';
-                        });
-                }
-            },
-            watch: {
-                movies: function(movies){
-                    var newMovie = movies[movies.length - 1];
-                    alert(newMovie.name + ' de ' + newMovie.year + ' foi adicionado!');
+            filters: {
+                uppercase: function(value, onlyFirstCharacter) {
+                    if(!value) {
+                        return '';
+                    }
+                    value = value.toString();
+                    if(onlyFirstCharacter){
+                        return value.charAt(0).toUpperCase() + value.slice(1);
+                    }else{
+                        return value.toUpperCase();
+                    }
                 }
             }
         });       
