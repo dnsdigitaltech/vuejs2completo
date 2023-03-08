@@ -18,13 +18,15 @@
                     <th>Nome</th>
                     <th>Título</th>
                     <th>Empresa</th>
+                    <th>index</th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="employee in employees">
+                <tr v-for="(employee, index) in employees">
                     <td>{{employee.name}}</td>
                     <td>{{employee.title}}</td>
                     <td>{{companyName}}</td>
+                    <td>{{index}}</td>
                 </tr>
             </tbody>
         </table>
