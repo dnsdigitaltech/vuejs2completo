@@ -8,38 +8,20 @@
 </head>
 <body>
     <div id="app">
-        <!--EXERCÍCIO 1: Faça com que a entrada de texto abaixo atualize uma propriedade de dados a cada
-        evento "keyup". Também imprima a propriedade de dados.
-        Dica: event.target.value dá acesso ao valor de entrada.-->
-        <input type="text" v-on:keyup="nameKeyup">
-        Output: {{ name }}
-
-        <br><br>
-        <!--EXERCÍCIO 2: Faça a entrada de texto abaixo atualizar a propriedade de dados de
-        exercício 1, mas apenas ao pressionar as teclas Control + Enter.
-        Dica: o modificador de tecla para a tecla Control é denominado "ctrl"-->
-        <input type="text" v-on:keyup.ctrl.enter="name = $event.target.value">
-        Output: {{ name }}
-        
-        <br><br>
-        <!--EXERCÍCIO 3: Impedir que o formulário abaixo seja enviado.
-        Dica: evite o evento "enviar" no formulário.-->
-        <form action="" method="GET">
-            <input type="submit" value="Submit">
-        </form>
+        <input type="text"  v-model.number="age">
+        <p>Você entrou: {{ name }}</p>
+        <p>Idade: {{ age }}</p>
+        <p>Tipo: {{ typeof age }}</p>
     </div>
     <script src="vue.js"></script>
     <script>
         new Vue({
             el: '#app',
             data: {
-                name: ''
-            },
-            methods: {
-                nameKeyup: function(event) {
-                    this.name = event.target.value;
-                }
+                name: '',
+                age: 38
             }
+            
         });
     </script>
 </body>
