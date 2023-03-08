@@ -9,21 +9,15 @@
 <body>
     <div id="app">
         <ul>
-            <li v-for="(value, propertyName, index) in person">{{propertyName}} : {{value}} ({{index}})</li>
+            <li v-for="(n, index) in 10">
+                {{n}} * {{index}} = {{ n * index }}
+            </li>
         </ul>        
     </div>
     <script src="vue.js"></script>
     <script>
         new Vue({
-            el: '#app',
-            data: {
-                person: {
-                    firstName: 'Davi',
-                    lastName: 'Bernardo',
-                    age: 38
-                }
-            }
-            
+            el: '#app'
         });        
     </script>
 </body>
