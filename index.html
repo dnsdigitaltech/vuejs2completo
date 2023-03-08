@@ -7,8 +7,17 @@
     <title>Title</title>
 </head>
 <body>
-    <div id="app">
-        <h1>{{ message | uppercase(true)}}</h1>
+    <div id="app">         
+        <!-- EXERCÍCIO 1: Implemente um filtro "uwfirst" que transforma o primeiro
+        caractere de cada palavra para maiúsculo. Use este filtro para transformar o
+        título do parágrafo com a diretiva v-bind.
+        DICA: Use a função "split" do JavaScript para dividir a mensagem em palavras. -->
+        <p v-bind:title="message | uwfirst">{{ message}}</p>
+        
+        <!-- EXERCÍCIO 2: Aplique o filtro do primeiro exercício ao abaixo
+        parágrafo. Em seguida, implemente um filtro que remova todos os espaços e encadeie-os
+        dois filtros juntos. -->
+        <p>{{ message | uwfirst | removeSpaces}}</p>
     </div>
     <script src="vue.js"></script>
     <script>
@@ -18,18 +27,27 @@
                 message: 'hello world!'
             },
             filters: {
-                uppercase: function(value, onlyFirstCharacter) {
-                    if(!value) {
+                uwfirst: function(value) {
+                    if(!value){
                         return '';
                     }
-                    value = value.toString();
-                    if(onlyFirstCharacter){
-                        return value.charAt(0).toUpperCase() + value.slice(1);
-                    }else{
-                        return value.toUpperCase();
+                    var parts = value.toString().split(' ');
+
+                    var uppercaseWords = parts.map(function(word) {
+                        return word.charAt(0).toUpperCase() + word.slice(1);
+                    });
+
+                    return uppercaseWords.join(' ');
+                },
+                removeSpaces: function(value) {
+                    if(!value){
+                        return '';
                     }
-                }
+
+                    return value.toString().replace(/ /g, '');
+                } 
             }
+                   
         });       
     </script>
 </body>
