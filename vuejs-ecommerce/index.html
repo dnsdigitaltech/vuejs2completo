@@ -38,7 +38,7 @@
                                     <div class="number-in-stock" :class="{ few: product.inStock < 10, none: product.inStock == 0 }">
                                         {{ product.inStock }} in stock
                                     </div>
-                                    <button class="btn btn-success" :disabled="product.inStock == 0">Add to cart</button>
+                                    <button class="btn btn-success" @click="addProductToCart(product)" :disabled="product.inStock == 0">Add to cart</button>
                                 </div>
                             </div>
                         </div>

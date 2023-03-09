@@ -1,6 +1,9 @@
 new Vue({
     el: '#app',
     data: {
+        cart: {
+            items: []
+        },
         products: [
             {
                 id: 1,
@@ -45,6 +48,15 @@ new Vue({
                 inStock: 81
             }
         ]
+    },
+    methods: {
+        addProductToCart: function(product) {
+            this.cart.items.push({
+                product: product,
+                quatity: 1
+            });
+            product.inStock--;
+        }
     },
     filters: {
         currency: function(value) {
