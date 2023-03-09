@@ -45,5 +45,16 @@ new Vue({
                 inStock: 81
             }
         ]
+    },
+    filters: {
+        currency: function(value) {
+            var formatter = Intl.NumberFormat('pt-BR', {
+                style: 'currency',
+                currency: 'BRL',
+                minimumFractionDigits: 0
+            });
+
+            return formatter.format(value);
+        }
     }
 });
