@@ -1,10 +1,6 @@
 new Vue({
     el: '#app',
     data: {
-        isShowingCart: false,
-        cart: {
-            items: []
-        },
         products: [
             {
                 id: 1,
@@ -49,83 +45,5 @@ new Vue({
                 inStock: 81
             }
         ]
-    },
-    methods: {
-        addProductToCart: function(product) {
-            var cartItem = this.getCartItem(product);
-        
-            if (cartItem != null) {
-                cartItem.quantity++;
-            } else {
-                this.cart.items.push({
-                    product: product,
-                    quantity: 1
-                });
-            }
-        
-            product.inStock--;
-        },
-        getCartItem: function(product) {
-            for (var i = 0; i < this.cart.items.length; i++) {
-                if (this.cart.items[i].product.id === product.id) {
-                    return this.cart.items[i];
-                }
-            }
-        
-            return null;
-        },
-        increaseQuantity: function(cartItem) {
-            cartItem.product.inStock--;
-            cartItem.quantity++;
-        },
-        decreaseQuantity: function(cartItem) {
-            cartItem.quantity--;
-            cartItem.product.inStock++;
-        
-            if (cartItem.quantity == 0) {
-                this.removeItemFromCart(cartItem);
-            }
-        },
-        removeItemFromCart: function(cartItem) {
-            var index = this.cart.items.indexOf(cartItem);
-        
-            if (index !== -1) {
-                this.cart.items.splice(index, 1);
-            }
-        },
-        checkout: function() {
-            if (confirm('Are you sure that you want to purchase these products?')) {
-                this.cart.items.forEach(function(item) {
-                    item.product.inStock += item.quantity;
-                });
-            
-                this.cart.items = [];
-            }
-        }
-    },
-    computed: {
-        cartTotal: function() {
-            var total = 0;
-        
-            this.cart.items.forEach(function(item) {
-                total += item.quantity * item.product.price;
-            });
-        
-            return total;
-        },
-        taxAmount: function() {
-            return ((this.cartTotal * 10) / 100);
-        }
-    },
-    filters: {
-        currency: function(value) {
-            var formatter = new Intl.NumberFormat('en-US', {
-                style: 'currency',
-                currency: 'USD',
-                minimumFractionDigits: 0
-            });
-            
-            return formatter.format(value);
-        }
     }
 });
