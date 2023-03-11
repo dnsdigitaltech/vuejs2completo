@@ -7,23 +7,21 @@
     <title>Title</title>
 </head>
 <body>
-    <div id="app"></div>
+    <div id="app">
+        <h1>Contador: {{ counter }}</h1>
+        <button @click="counter++">Aumentar contador</button>
+    </div>
     <script src="vue.js"></script>
     <script>
         var vm = new Vue({
-            template: `
-                <div>
-                    <h1>{{ message }}</h1>
-                </div>
-            `,
-            data: {                
-                message: 'Hello World!'
-            }           
-        });     
-        //vm.$mount('#app');
-        vm.$mount();
-        console.log(vm.$el);
-        document.getElementById('app').appendChild(vm.$el);
+            el: '#app',
+            data: {
+                counter: 1
+            }
+        });
+        setTimeout(function(){
+            vm.$destroy();
+        }, 5000)
     </script>
 </body>
 </html>
