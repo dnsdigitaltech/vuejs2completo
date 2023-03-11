@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+</head>
+<body>
+    <div id="vm1">       
+        <h1>{{ name }}</h1>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        var vm1 = new Vue({
+            el:'#vm1',
+            data: {
+                name: 'Instância Vue #1'
+            }     
+        });  
+        setTimeout(function() {
+            vm1.name = 'Olá do outro lado!';  
+        }, 2000);
+          
+    </script>
+</body>
+</html>
