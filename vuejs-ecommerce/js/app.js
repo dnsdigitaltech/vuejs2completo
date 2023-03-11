@@ -57,7 +57,7 @@ new Vue({
                 quantity: 1
             });
             product.inStock--;
-        }
+        },
     },
     computed: {
         cartTotal: function() {
@@ -66,6 +66,9 @@ new Vue({
                 total += item.quantity * item.product.price;              
             });
             return total;
+        },
+        taxAmount: function() {
+            return ((this.cartTotal*10)/100);
         }
     },
     filters: {
