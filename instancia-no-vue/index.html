@@ -7,19 +7,23 @@
     <title>Title</title>
 </head>
 <body>
-    <div id="app">       
-        <h1 ref="message">{{ message }}</h1>
-    </div>
+    <div id="app"></div>
     <script src="vue.js"></script>
     <script>
         var vm = new Vue({
-            el:'#app',
+            template: `
+                <div>
+                    <h1>{{ message }}</h1>
+                </div>
+            `,
             data: {                
                 message: 'Hello World!'
             }           
         });     
         //vm.$mount('#app');
-        vm.$mount(document.getElementById('app'));
+        vm.$mount();
+        console.log(vm.$el);
+        document.getElementById('app').appendChild(vm.$el);
     </script>
 </body>
 </html>
