@@ -8,18 +8,17 @@
 </head>
 <body>
     <div id="app">       
-        
+        {{ message }}
+        <button @click="showMessage">Clique me</button>
     </div>
     <script src="vue.js"></script>
     <script>
-        var data = {
-            message: 'Hello World',
-            x: 1,
-            y: 2
-        }
         var vm = new Vue({
             el:'#app',
-            data: data,
+            data: data = {                
+                x: 1,
+                y: 2
+            },
             methods: {
                 showMessage: function() {
                     alert(this.message);  
@@ -33,10 +32,8 @@
         }); 
 
         console.log(vm);
-        console.log(vm.message);
-        console.log(data.message === vm.message);
-        console.log(data === vm.$data);
         
+        vm.message = 'Hello World!';
           
     </script>
 </body>
