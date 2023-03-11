@@ -8,23 +8,46 @@
 </head>
 <body>
     <div id="app">       
-        {{message}}
+        <p>contar: {{ counter }}</p>
+        <button @click="counter++">Aumentar contador</button>
+        <button @click="person.name.firstName='Carlos'">Mudar o primeiro nome</button>
     </div>
     <script src="vue.js"></script>
     <script>
         var vm = new Vue({
             el:'#app',
             data: {                
-                message: 'Hello!'
+                counter: 1,
+                person: {
+                    name: {
+                        firstName: 'Davi',
+                        lastName:  'Bernardo'
+                    }
+                }
             }
         }); 
 
-        vm.message = 'Hello World!';
-        alert(vm.$el.textContent);
+        /*vm.$watch('counter', function(newValue, oldValue) {
+            alert("Contador alterado de " + oldValue + " para " + newValue + "!")
+        });*/
+        /*vm.$watch('person.name.firstName', function(newValue, oldValue) {
+            alert("Primeiro nome alterado de " + oldValue + " para " + newValue + "!")
+        });*/
+        /*vm.$watch('person.name', function(newValue, oldValue) {
+            alert("Primeiro nome alterado de " + oldValue.firstName + " para " + newValue.firstName + "!");
+        }, { deep: true });*/
+        var unwatch = vm.$watch(
+            function() {
+                return this.counter;
+            }, 
+            function(newValue, oldValue) {
+                alert("Contador alterado de " + oldValue + " para " + newValue + "!")
+            }
+        );
+        setTimeout(function(){
+            unwatch();
+        }, 5000)
 
-        Vue.nextTick( function() {
-            alert(vm.$el.textContent);
-        })
     </script>
 </body>
 </html>
