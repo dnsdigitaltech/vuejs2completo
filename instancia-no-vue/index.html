@@ -7,31 +7,36 @@
     <title>Title</title>
 </head>
 <body>
-    <div id="vm1">       
-        <h1>{{ name }}</h1>
-    </div>
-    <div id="vm2">       
-        <button @click="showName">Ver nome</button>
+    <div id="app">       
+        
     </div>
     <script src="vue.js"></script>
     <script>
-        var vm1 = new Vue({
-            el:'#vm1',
-            data: {
-                name: 'Instância Vue #1'
-            }     
-        });  
-        var vm2 = new Vue({
-            el:'#vm2',
+        var data = {
+            message: 'Hello World',
+            x: 1,
+            y: 2
+        }
+        var vm = new Vue({
+            el:'#app',
+            data: data,
             methods: {
-                showName: function() {
-                    alert("O nome da outra instância vue é: " + vm1.name);
+                showMessage: function() {
+                    alert(this.message);  
+                }              
+            },
+            computed: {
+                z: function() {
+                    return this.x + this.y;
                 }
-            }  
+            }
         }); 
-        setTimeout(function() {
-            vm1.name = 'Olá do outro lado!';  
-        }, 2000);
+
+        console.log(vm);
+        console.log(vm.message);
+        console.log(data.message === vm.message);
+        console.log(data === vm.$data);
+        
           
     </script>
 </body>
