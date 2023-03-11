@@ -8,20 +8,54 @@
 </head>
 <body>
     <div id="app">
-        <h1>Contador: {{ counter }}</h1>
-        <button @click="counter++">Aumentar contador</button>
+        <h1>{{ message }}</h1>
+        <button @click="message = 'Uma nova mensagem'">Mudar mensagem</button>
+        <button @click="counter++">Aumentando contador ({{ counter }})</button>
     </div>
     <script src="vue.js"></script>
     <script>
         var vm = new Vue({
-            el: '#app',
             data: {
-                counter: 1
-            }
+                message: 'Hello World!',
+                counter: 1,
+                created: new Date()
+            },
+            beforeCreate: [
+                function() {
+                    alert('beforeCreate #1');
+                },
+                function() {
+                    alert('beforeCreate #2');
+                },
+            ],
+            
+            created() {
+                alert('created');
+            },
+            beforeMount() {
+                alert('beforeMount');
+            },
+            mounted() {
+                alert('mounted');
+            },
+            beforeUpdate() {
+                alert('beforeUpdate');
+            },
+            updated() {
+                alert('updated');
+            },
+            beforeDestroy() {
+                alert('beforeDestroy');
+            },
+            destroyed() {
+                alert('destroyed');
+            },
         });
-        setTimeout(function(){
-            vm.$destroy();
-        }, 5000)
+        console.log(vm);
+        //vm.$destroy();
+        setTimeout(function() {
+            vm.$mount('#app');
+        }, 2000);
     </script>
 </body>
 </html>
