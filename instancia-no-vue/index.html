@@ -9,11 +9,6 @@
 <body>
     <div id="app">       
         <h1 ref="message">{{ message }}</h1>
-        <button ref="myButton" @click="clickButton">Clique me</button>
-
-        <ul>
-            <li v-for="n in 10" ref="numbers">{{ n }}</li>
-        </ul>
     </div>
     <script src="vue.js"></script>
     <script>
@@ -21,21 +16,10 @@
             el:'#app',
             data: {                
                 message: 'Hello World!'
-            },
-            methods: {
-                clickButton: function() {
-                    this.$refs.myButton.innerText = this.message;
-                }
-            },
-        }); 
-        console.log(vm.$refs);
-        setTimeout(function() {
-            vm.$refs.message.innerText = 'Isto é um texto!';
-        }, 2000);
-
-        setTimeout(function() {
-            vm.message = 'Isto é outro texto!';
-        }, 4000);
+            }           
+        });     
+        //vm.$mount('#app');
+        vm.$mount(document.getElementById('app'));
     </script>
 </body>
 </html>
