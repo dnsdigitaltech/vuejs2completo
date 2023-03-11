@@ -8,46 +8,34 @@
 </head>
 <body>
     <div id="app">       
-        <p>contar: {{ counter }}</p>
-        <button @click="counter++">Aumentar contador</button>
-        <button @click="person.name.firstName='Carlos'">Mudar o primeiro nome</button>
+        <h1 ref="message">{{ message }}</h1>
+        <button ref="myButton" @click="clickButton">Clique me</button>
+
+        <ul>
+            <li v-for="n in 10" ref="numbers">{{ n }}</li>
+        </ul>
     </div>
     <script src="vue.js"></script>
     <script>
         var vm = new Vue({
             el:'#app',
             data: {                
-                counter: 1,
-                person: {
-                    name: {
-                        firstName: 'Davi',
-                        lastName:  'Bernardo'
-                    }
+                message: 'Hello World!'
+            },
+            methods: {
+                clickButton: function() {
+                    this.$refs.myButton.innerText = this.message;
                 }
-            }
+            },
         }); 
+        console.log(vm.$refs);
+        setTimeout(function() {
+            vm.$refs.message.innerText = 'Isto é um texto!';
+        }, 2000);
 
-        /*vm.$watch('counter', function(newValue, oldValue) {
-            alert("Contador alterado de " + oldValue + " para " + newValue + "!")
-        });*/
-        /*vm.$watch('person.name.firstName', function(newValue, oldValue) {
-            alert("Primeiro nome alterado de " + oldValue + " para " + newValue + "!")
-        });*/
-        /*vm.$watch('person.name', function(newValue, oldValue) {
-            alert("Primeiro nome alterado de " + oldValue.firstName + " para " + newValue.firstName + "!");
-        }, { deep: true });*/
-        var unwatch = vm.$watch(
-            function() {
-                return this.counter;
-            }, 
-            function(newValue, oldValue) {
-                alert("Contador alterado de " + oldValue + " para " + newValue + "!")
-            }
-        );
-        setTimeout(function(){
-            unwatch();
-        }, 5000)
-
+        setTimeout(function() {
+            vm.message = 'Isto é outro texto!';
+        }, 4000);
     </script>
 </body>
 </html>
