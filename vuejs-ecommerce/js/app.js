@@ -52,9 +52,9 @@ new Vue({
     },
     methods: {
         addProductToCart: function(product) {
-            var carttItem = this.getCartItem(product);
-            if(carttItem != null) {
-                carttItem.quantity++;
+            var cartItem = this.getCartItem(product);
+            if(cartItem != null) {
+                cartItem.quantity++;
             }else{
                 this.cart.items.push({
                     product: product,
@@ -72,6 +72,24 @@ new Vue({
             }
             
             return null;
+        },
+        increaseQuantity: function(cartItem) {
+            cartItem.product.inStock--;
+            cartItem.quantity++;
+        },
+        decreaseQuantity: function(cartItem) {
+            cartItem.quantity--;
+            cartItem.product.inStock++;
+
+            if (cartItem.quantity == 0) {
+                this.removeItemFromCart(cartItem);
+            }
+        },
+        removeItemFromCart: function(cartItem) {
+            var index = this.cart.items.indexOf(cartItem);
+            if (index !== -1) {
+                this.cart.items.splice(index, 1);
+            }
         }
     },
     computed: {
