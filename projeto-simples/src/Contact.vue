@@ -1,6 +1,8 @@
 <template>
     <div>
+        <hr>
         <h2>Contate-nos</h2>
+        <slot name="top"></slot>
         <form>
             <div class="form-group">
                 <label for="yourNome">Seu nome completo</label>
@@ -15,7 +17,7 @@
                 <textarea name="message" id="" cols="30" rows="10" class="form-control" placeholder="Mensagem"></textarea>
             </div>
 
-            <slot>
+            <slot name="bottom">
                 <p>
                     Responderemos em até 2 dias úteis
                 </p>
