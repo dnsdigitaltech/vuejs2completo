@@ -3,13 +3,17 @@
         <h1>{{ title }}</h1>
         <p>Publicado em: {{ published | moment}}</p>
         <p class="lead">{{ content }}</p>
+        <p>Compatilhamentos: {{ shares }}</p>
         <app-autor :autor="autor"></app-autor>
+        <br><br>
+        <app-social-sharing @articleWasShared="shared('Hello', $event)"></app-social-sharing>
     </div>
 </template>
 <script>
     import 'moment/locale/pt-br';
     import moment from 'moment';
     import Autor from './Autor.vue';
+    import Social from './Social.vue';
     export default {
         data() {
             return {
@@ -19,7 +23,15 @@
                 autor: {
                     firstName: 'Davi',
                     lastName: 'Bernardo'
-                }
+                },
+                shares: 0
+            }
+        },
+        methods: {
+            shared: function(message, event) {
+                this.shares++;
+                console.log(message);
+                console.log(event);
             }
         },
         filters: {
@@ -28,17 +40,8 @@
             }
         },
         components: {
-            appAutor: Autor
+            appAutor: Autor,
+            appSocialSharing: Social
         }
     }
 </script>
-<style>
-    *{
-        font-style: italic;
-    }
-</style>
-<style scoped>
-    * {
-        color: red;
-    }
-</style>
