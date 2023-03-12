@@ -5,8 +5,11 @@
 </template>
 <script>
     export default {
-        destroyed() {
-            alert("O componente Home foi desctruído")
+        activated() {
+            alert('O componente home foi ativado');
+        },
+        deactivated() {
+            alert('O componente home foi desativado');
         }
     }
 </script>

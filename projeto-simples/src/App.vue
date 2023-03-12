@@ -9,7 +9,7 @@
           <ul class="nav navbar-nav">
             <li><a href="" @click="activeView = 'app-home'" class="navbar-brand">Home</a></li>
             <li><a href="" @click="activeView = 'app-about'" class="navbar-brand">Sobre</a></li>
-            <li><a href="" @click="activeView = 'app-conctat'" class="navbar-brand">Contato</a></li>
+            <li><a href="" @click="activeView = 'app-contato'" class="navbar-brand">Contato</a></li>
           </ul>
         </div>
       </div>

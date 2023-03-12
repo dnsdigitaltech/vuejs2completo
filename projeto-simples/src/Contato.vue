@@ -1,13 +1,13 @@
 <template>
-        <h1>SOBRE</h1>
+    <h1>CONTATO</h1>
 </template>
 <script>
     export default {
         activated() {
-            alert('O componente sobre foi ativado');
+            alert('O componente contato foi ativado');
         },
         deactivated() {
-            alert('O componente sobre foi desativado');
+            alert('O componente contato foi desativado');
         }
     }
 
