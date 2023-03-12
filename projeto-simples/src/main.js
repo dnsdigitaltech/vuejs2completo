@@ -5,6 +5,8 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import Article from './Article.vue';
 
+export const eventBus = new Vue();
+
 Vue.component('announcement', Announcement);
 Vue.component('appArticle', Article);
 

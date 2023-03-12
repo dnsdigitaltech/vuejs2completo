@@ -5,9 +5,13 @@
 </template>
 
 <script>
+    import {eventBus} from './main';
     export default {
         methods: {
             share() {
+                eventBus.$emit('articleWasShared', {
+                    media: 'Facebook'
+                });
                 this.$emit('articleWasShared', {
                     media: 'Facebook'
                 });
