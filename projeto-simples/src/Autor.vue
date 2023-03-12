@@ -5,13 +5,6 @@
 </template>
 <script>
     export default {
-        data() {
-            return {
-                autor: {
-                    firstName: 'Davi',
-                    lastName: 'Bernardo'
-                }
-            }
-        }
+        props: ['autor']
     }
 </script>
