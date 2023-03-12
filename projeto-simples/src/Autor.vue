@@ -5,6 +5,11 @@
 </template>
 <script>
     export default {
-        props: ['autor']
+        props: {
+            autor: {
+                type: Object,
+                required: true
+            }
+        }
     }
 </script>
