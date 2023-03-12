@@ -10,9 +10,6 @@
     <div id="app">  
         <contate-nos></contate-nos>   
     </div>
-    <div id="app2">  
-        <contate-nos></contate-nos>   
-    </div>
     <script src="vue.js"></script>
     <script>
         var contactUs = {
@@ -31,11 +28,8 @@
         new Vue({
             el: '#app',
             components: {
-                'contate-nos': contactUs
+                contateNos: contactUs
             }
-        });
-        new Vue({
-            el: '#app2'
         });
     </script>
 </body>
