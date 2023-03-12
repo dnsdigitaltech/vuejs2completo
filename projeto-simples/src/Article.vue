@@ -28,3 +28,13 @@
         }
     }
 </script>
+<style>
+    *{
+        font-style: italic;
+    }
+</style>
+<style scoped>
+    * {
+        color: red;
+    }
+</style>
