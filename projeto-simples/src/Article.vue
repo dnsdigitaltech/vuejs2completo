@@ -6,7 +6,7 @@
         <p>Compatilhamentos: {{ shares }}</p>
         <app-autor :autor="autor"></app-autor>
         <br><br>
-        <app-social-sharing @articleWasShared="shared('Hello', $event)"></app-social-sharing>
+        <app-social-sharing :article="$data" @articleWasShared="shared"></app-social-sharing>
     </div>
 </template>
 <script>
@@ -28,9 +28,8 @@
             }
         },
         methods: {
-            shared: function(message, event) {
+            shared: function(event) {
                 this.shares++;
-                console.log(message);
                 console.log(event);
             }
         },
