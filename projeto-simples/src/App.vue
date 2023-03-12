@@ -16,7 +16,9 @@
     </nav>
     <div class="container">
       <div class="jumbotron">
-        <component :is="activeView"></component>
+        <keep-alive>
+          <component :is="activeView"></component>
+        </keep-alive>
       </div>
     </div>
   </div>
