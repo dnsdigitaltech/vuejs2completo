@@ -12,6 +12,7 @@
   "dependencies": {
     "bootstrap": "^5.2.3",
     "bootstrap-vue": "^2.23.1",
+    "moment": "^2.29.4",
     "vue": "^2.5.11"
   },
   "browserslist": [
