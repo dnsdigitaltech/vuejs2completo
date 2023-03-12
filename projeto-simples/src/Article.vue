@@ -7,6 +7,7 @@
         <app-autor :autor="autor"></app-autor>
         <br><br>
         <app-social-sharing :article="$data" @articleWasShared="shared"></app-social-sharing>
+        <app-contact></app-contact>
     </div>
 </template>
 <script>
@@ -14,6 +15,7 @@
     import moment from 'moment';
     import Autor from './Autor.vue';
     import Social from './Social.vue';
+    import Contact from './Contact.vue';
     export default {
         data() {
             return {
@@ -40,7 +42,8 @@
         },
         components: {
             appAutor: Autor,
-            appSocialSharing: Social
+            appSocialSharing: Social,
+            appContact: Contact
         }
     }
 </script>
