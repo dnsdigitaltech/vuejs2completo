@@ -1,6 +1,6 @@
 <template>
     <div class="article">
-        CONTATO
+        SOBRE
     </div>
 </template>
 <script>

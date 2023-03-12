@@ -1,13 +1,22 @@
 <template>
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12">
-        <announcement></announcement>                
-        <app-article></app-article>        
-        <app-contact>
-          <p slot="top">Entre em contato conosco e um de nossos representantes entrará em contato com você o mais rápido possível</p>
-          <p slot="bottom">Por favor, não envie nenhuma informação sensível</p>
-        </app-contact>
+  <div>
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="" class="navbar-brand" @click="activeView = 'app-about'">Nome do projeto</a>
+        </div>
+        <div id="navbar" class="navbar-collapse ">
+          <ul class="nav navbar-nav">
+            <li><a href="" @click="activeView = 'app-home'" class="navbar-brand">Home</a></li>
+            <li><a href="" @click="activeView = 'app-about'" class="navbar-brand">Sobre</a></li>
+            <li><a href="" @click="activeView = 'app-conctat'" class="navbar-brand">Contato</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="jumbotron">
+        <component :is="activeView"></component>
       </div>
     </div>
   </div>
@@ -15,6 +24,10 @@
 
 <script>
 export default {
-  
+  data() {
+    return {
+      activeView: 'app-home'
+    };
+  }
 }
 </script>

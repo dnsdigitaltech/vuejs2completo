@@ -1,11 +1,8 @@
 <template>
     <div class="article">
-        CONTATO
+        HOME
     </div>
 </template>
 <script>
-    export default {
-
-    }
 
 </script>
