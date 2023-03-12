@@ -8,27 +8,27 @@
 </head>
 <body>
     <div id="app">  
-        <contate-nos></contate-nos>     
-        <contate-nos></contate-nos>
+        <counter></counter>
+        <counter></counter>
+        <counter></counter>
     </div>
     <script src="vue.js"></script>
     <script>
-        Vue.component('contate-nos', {
-            data: function() {
+        Vue.component('counter', {    
+            data: function()  {
                 return {
-                    email: 'info@minhaempresa.com.br'
+                    counter: 0
                 };
-            },
+            },  
             template: `
                 <div>
-                    <h1>Contate-nos</h1>
-                    <p>Por favor envie um email para: {{ email }}</p>
+                    <button @click="counter++">{{ counter }}</button>
                 </div>
             `
-        })   ;
+        });
         new Vue({
             el: '#app'
-        }) 
+        });
     </script>
 </body>
 </html>
