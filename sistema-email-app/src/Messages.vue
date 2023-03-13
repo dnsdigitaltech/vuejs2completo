@@ -1,7 +1,7 @@
 <template>
     <table v-if="messages.length > 0" class="table table-inbox table-hover">
         <tbody>
-            <tr v-for="message in messages" :class="{unread: typeof message.isRead !== 'undefined' && !message.isRead}">
+            <tr v-for="message in messages" @click="openMessage(message)" :class="{unread: typeof message.isRead !== 'undefined' && !message.isRead}">
                 <td><input type="checkbox"></td>
                 <td>
                     <a href="" v-if="typeof message.isImportant !== 'undefined'" @click.prevent.stop="message.isImportant = !message.isImportant">
@@ -18,11 +18,23 @@
     <p v-else>Ainda não há mensagens aqui</p>
 </template>
 <script>
+    import { eventBus } from './main';
     export default {
         props: {
             messages: {
                 type: Array,
                 required: true
+            }
+        },
+        methods: {
+            openMessage(message) {
+                eventBus.$emit('changeView', {
+                    tag: 'app-view-message',
+                    title: message.subject,
+                    data: {
+                        message:message
+                    }
+                });
             }
         }
     }
