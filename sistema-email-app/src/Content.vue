@@ -1,10 +1,10 @@
 <template>
     <aside class="lg-side">
         <div class="inbox-head">
-            <h3>{{ currenView.title }}</h3>
+            <h3>{{ currentView.title }}</h3>
         </div>
         <keep-alive>
-            <component :is="currenView.tag"></component>
+            <component :is="currentView.tag" :data="currentView.data"></component>
         </keep-alive>
         
     </aside>
@@ -17,11 +17,18 @@
     import ViewMessage from './ViewMessage.vue';
     import { eventBus } from './main';
     export default {
+        props: {
+            messages: {
+                type: Array,
+                required: true
+            }
+        },
         created() {
             eventBus.$on('changeView', (data) => {
                 let temp = [{
                     tag: data.tag,
-                    title: data.title
+                    title: data.title,
+                    data: data.data || {}
                 }];
                 this.history = temp.concat(this.history.splice(0));
             })
@@ -31,14 +38,19 @@
                 history: [
                     {
                         tag: 'app-inbox',
-                        title: 'Inbox'
+                        title: 'Inbox',
+                        data: {
+                            messages: null
+                        }
                     }
                 ]
             };
         },
         computed: {
-            currenView() {
-                return this.history[0];
+            currentView() {
+                let current = this.history[0];
+                current.data.messages = this.messages;
+                return current;
             }
         },
         components: {
