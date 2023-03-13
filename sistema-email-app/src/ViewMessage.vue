@@ -23,6 +23,11 @@
                 required: true
             }
         },
+        activated() {
+            if(typeof this.data.message.isRead !== 'undefined'){
+                this.data.message.isRead = true;
+            }
+        },
         filters: {
             formatBytes(bytes) {
                 if (bytes == 0) {
