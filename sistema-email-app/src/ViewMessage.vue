@@ -1,5 +1,8 @@
 <template>
     <div class="inbox-body">
+        <button class="btn btn-primary" @click="navigateBack">
+            <i class="fa farrow-left" aria-hidden="true"></i> &nbsp; Voltar
+        </button>
         <p><strong>Date: </strong>{{ data.message.date.fromNow() }}</p>
         <p><strong>De: </strong>{{ data.message.from.name }} <{{ data.message.from.email }}></p>
         <hr>
@@ -16,6 +19,7 @@
     </div>
 </template>
 <script>
+    import { eventBus } from './main';
     export default {
         props: {
             data: {
@@ -39,6 +43,16 @@
                 let sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
                 let i = Math.floor(Math.log(bytes) / Math.log(k));
                 return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+            }
+        },
+        methods: {
+            navigateBack() {
+                let previousView = this.$parent.previousView;
+                eventBus.$emit('changeView', {
+                    tag: previousView.tag,
+                    title: previousView.title,
+                    data: previousView.data
+                })
             }
         }
     }
