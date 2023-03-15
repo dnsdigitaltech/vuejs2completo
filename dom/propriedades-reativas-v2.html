@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propriedades reativas v2</title>
+</head>
+<body>
+    <div id="app">       
+        <button v-on:click="aumentar">Aumentar</button>
+        <button v-on:click="contador2++">Aumentar2</button>
+        <button v-on:click="diminuir">Diminuir</button>
+        <p>Contador: {{ contador }} | {{ contador2 }}</p>
+        <p>Resultado: {{ resultado }}</p>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        new Vue({
+            el:'#app',
+            data: {
+                contador: 0,
+                contador2: 0
+               // resultado: ''
+            },
+            computed: {
+                resultado() {
+                    console.log('Método computed resultado chamado...')
+                    return this.contador >=5 ? 'Maior ou igual a 5' : 'Menor que 5'
+                }
+            },
+            methods: {
+                aumentar() {
+                    this.contador++
+                    //this.resultado = this.contador >=5 ? 'Maior ou igual a 5' : 'Menor que 5'
+                },
+                diminuir() {
+                    this.contador--
+                    //this.resultado = this.contador >=5 ? 'Maior ou igual a 5' : 'Menor que 5'
+                },
+                // resultado() {
+                //     console.log('Método resultado chamado...')
+                //     return this.contador >=5 ? 'Maior ou igual a 5' : 'Menor que 5'
+                // }
+            },
+        });       
+    </script>
+</body>
+</html>
