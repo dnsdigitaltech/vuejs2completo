@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estilo V2</title>
+    <title>Estilo V3</title>
     <style>
         .caixas{
             display: flex;
@@ -24,6 +24,9 @@
         .c3 {
             background-color: blue;
         }
+        .girar {
+            transform: rotate(45deg);
+        }
     </style>
 </head>
 <body>
@@ -31,9 +34,11 @@
         <div class="caixas">    
             <div class="demo" :class="estilo1"
                 @click="aplicarC1 = !aplicarC1"></div>
-            <div class="demo"></div>
-            <div class="demo" :class="classeCss"></div>
+            <div class="demo" :class="estilo1"></div>
+            <div class="demo" :class="[classeCss, {girar: aplicarGirar}]"></div>
         </div>
+        <hr>
+        <input type="text" v-model="classeCss">
     </div>
     <script src="vue.js"></script>
     <script>
@@ -41,7 +46,8 @@
             el:'#app',
             data: {
                 aplicarC1: false,
-                classeCss: 'c1'
+                classeCss: 'c1',
+                aplicarGirar: true
             },
             computed: {
                 estilo1() {
